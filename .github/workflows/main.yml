@@ -1,13 +1,14 @@
 name: Build and Push Docker Image
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:  # Запуск вручну
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: ${{ vars.IMAGE_NAME }}  # Використовуємо змінну із "Variables" репозиторію
+      IMAGE_TAG: v1.0
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -16,7 +17,7 @@ jobs:
         run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
       - name: Build Docker image
-        run: docker build -t my-app:${{ github.sha }} app/
+        run: docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} app/
 
       - name: Push Docker image to Docker Hub
-        run: docker push my-app:${{ github.sha }}
+        run: docker push ${{ env.IMAGE_NAME }}:${{ github.sha }}
