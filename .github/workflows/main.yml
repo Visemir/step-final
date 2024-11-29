@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: olegk-app  # Використовуємо змінну із "Variables" репозиторію
+      IMAGE_NAME: kalinichenkoit/olegk-app  # Використовуємо змінну із "Variables" репозиторію
       IMAGE_TAG: v1.0
     steps:
       - name: Checkout code
