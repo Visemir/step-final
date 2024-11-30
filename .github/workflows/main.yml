@@ -24,3 +24,15 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: docker push ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+      
+      - name: Update Kubernetes manifests (deployment.yaml)
+        run: |
+          sed -i 's|image: .*|image: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}|' kube-deploy/deploy-app.yml
+
+      - name: Commit updated Kubernetes manifests
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add kube-deploy/deploy-app.yml
+          git commit -m "Update Docker image tag to latest"
+          git push
