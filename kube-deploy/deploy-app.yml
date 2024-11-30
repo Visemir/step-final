@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: olegk-app
-        image: kalinichenkoit/olegk-app:v2.1
+        image: kalinichenkoit/olegk-app:v2.3
         ports:
         - containerPort: 5000
         
