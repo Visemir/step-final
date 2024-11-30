@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: olegk-app-ingress
+  namespace: olegk-app
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    #service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "HTTPS"  # Протокол для бэкенда
+    #nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    #nginx.ingress.kubernetes.io/rewrite-target: /  # Установка пути
+    external-dns.alpha.kubernetes.io/hostname: "app.olegk.devops3.test-danit.com"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+      - app.olegk.devops3.test-danit.com
+    
+  rules:
+  - host: app.olegk.devops3.test-danit.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: olegk-app
+            port:
+              number: 80

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: olegk-app
+  namespace: olegk-app
+  labels:
+    app: olegk-app
+spec:
+  selector:
+    matchLabels:
+      app: olegk-app
+  template:
+    metadata:
+      labels:
+        app: olegk-app
+    spec:
+      containers:
+      - name: olegk-app
+        image: nginx:latest
+        ports:
+        - containerPort: 80
