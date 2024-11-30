@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: olegk-app
-        image: nginx:latest
+        image: kalinichenkoit/olegk-app:v1.1
         ports:
         - containerPort: 80
