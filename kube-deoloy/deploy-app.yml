@@ -19,3 +19,4 @@ spec:
         image: kalinichenkoit/olegk-app:v2.0
         ports:
         - containerPort: 5000
+        
