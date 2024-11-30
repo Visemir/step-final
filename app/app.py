@@ -40,6 +40,7 @@ def home():
             <h1>DAN IT</h1>
             <h2>FINAL STEP PROJECT</h2>
             <h2>KALINICHENKO OLEG</h2>
+            <h2>V2.0</h2>
         </div>
     </body>
     </html>
