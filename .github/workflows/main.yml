@@ -1,8 +1,9 @@
 name: Build and Push Docker Image
 
 on:
-  workflow_dispatch:  # Запуск вручну
-
+  push:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
