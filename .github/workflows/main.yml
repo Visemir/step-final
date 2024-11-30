@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: kalinichenkoit/olegk-app  # Використовуємо змінну із "Variables" репозиторію
-      IMAGE_TAG: v2.1
+      IMAGE_TAG: v2.3
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -27,7 +27,7 @@ jobs:
       
       - name: Update Kubernetes manifests (deployment.yaml)
         run: |
-          ls -lh kube-deploy
+          
           sed -i 's|image: .*|image: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}|' kube-deploy/deploy-app.yml
 
       - name: Commit updated Kubernetes manifests
