@@ -27,6 +27,7 @@ jobs:
       
       - name: Update Kubernetes manifests (deployment.yaml)
         run: |
+          ls -lh
           sed -i 's|image: .*|image: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}|' kube-deploy/deploy-app.yml
 
       - name: Commit updated Kubernetes manifests
