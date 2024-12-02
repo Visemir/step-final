@@ -1,25 +1,27 @@
 apiVersion: networking.k8s.io/v1
-kind: Ingress
+kind: Ingress  # Тип ресурсу — Ingress, використовується для маршрутизації
 metadata:
-  name: olegk-app-ingress
-  namespace: olegk-app
+  name: olegk-app-ingress  # Ім'я Ingress-ресурсу
+  namespace: olegk-app  # Простір імен, у якому створюється Ingress
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    external-dns.alpha.kubernetes.io/hostname: "app.olegk.devops3.test-danit.com"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"   # Вказує, що редирект на HTTPS відключено
+    external-dns.alpha.kubernetes.io/hostname: "app.olegk.devops3.test-danit.com"  # Ім'я хоста для DNS-запису. Створює запис завдяки модулю external-dns
 spec:
-  ingressClassName: nginx
+  ingressClassName: nginx  # Клас Ingress-контролера
   tls:
   - hosts:
-      - app.olegk.devops3.test-danit.com
+      - app.olegk.devops3.test-danit.com  # Домен, на який застосовуються HTTPS-сертифікати
     
   rules:
-  - host: app.olegk.devops3.test-danit.com
+  - host: app.olegk.devops3.test-danit.com  # Домен, для якого застосовується Ingress
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - path: /  # Шлях (тут: кореневий), який обробляє Ingress
+        pathType: Prefix   # Тип відповідності шляху (Prefix — відповідає всім шляхам, що починаються з "/")
         backend:
           service:
-            name: olegk-app
+            name: olegk-app  # Ім'я сервісу, до якого спрямовується трафік
             port:
-              number: 80
+              number: 80  # Порт сервісу, який обробляє запити
+
+              
