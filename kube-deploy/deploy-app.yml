@@ -1,22 +1,22 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Deployment  # Тип ресурсу, що описує розгортання додатка
 metadata:
-  name: olegk-app
-  namespace: olegk-app
+  name: olegk-app  # Ім'я розгортання (Deployment) в Kubernetes
+  namespace: olegk-app  # Простір імен, в якому буде створено цей Deployment
   labels:
-    app: olegk-app
+    app: olegk-app  # Мітка з назвою додатка
 spec:
   selector:
     matchLabels:
-      app: olegk-app
+      app: olegk-app # Підключає Pod, які мають мітку `app: olegk-app`
   template:
     metadata:
       labels:
-        app: olegk-app
+        app: olegk-app # Мітка для ідентифікації Pod
     spec:
       containers:
-      - name: olegk-app
-        image: kalinichenkoit/olegk-app:v2.3
+      - name: olegk-app  # Ім'я контейнера 
+        image: kalinichenkoit/olegk-app:v2.3 # Образ контейнера 
         ports:
-        - containerPort: 5000
+        - containerPort: 5000  # Порт контейнера, на якому працює додаток
         
