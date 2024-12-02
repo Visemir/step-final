@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: Application  # Тип ресурсу, який створюється — ArgoCD додаток
 metadata:
-  name: olegk-app
-  namespace: argocd 
+  name: olegk-app  # Ім'я додатка в ArgoCD
+  namespace: argocd # Простір імен, у якому буде створений додаток (ArgoCD має бути в цьому просторі імен)
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Visemir/step-final.git'
-    targetRevision: main 
-    path: kube-deoloy/ 
+    repoURL: 'https://github.com/Visemir/step-final.git'  # URL репозиторію, що містить маніфести Kubernetes
+    targetRevision: main    # Гілка або тег у репозиторії, яка використовується (main — головна гілка)
+    path: kube-deoloy/      # Шлях до папки з маніфестами Kubernetes у репозиторії
   destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: olegk-app 
-  syncPolicy:
-    automated:
-      prune: true 
-      selfHeal: true 
+    server: 'https://kubernetes.default.svc' # API сервер Kubernetes (внутрішній URL для кластера)
+    namespace: olegk-app  # Простір імен Kubernetes, в якому буде розгорнуто додаток
+  syncPolicy:  
+    automated:   # Включення автоматичної синхронізації
+      prune: true # Видаляти ресурси, які більше не присутні у джерелі
+      selfHeal: true # Автоматично виправляти стан, якщо щось змінилось вручну
     syncOptions:
-      - CreateNamespace=true 
+      - CreateNamespace=true  # Автоматично створювати простір імен, якщо він не існує
