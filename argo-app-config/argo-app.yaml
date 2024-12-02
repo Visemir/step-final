@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: olegk-app
+  namespace: argocd 
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Visemir/step-final.git'
+    targetRevision: main 
+    path: kube-deoloy/ 
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: olegk-app 
+  syncPolicy:
+    automated:
+      prune: true 
+      selfHeal: true 
+    syncOptions:
+      - CreateNamespace=true 
