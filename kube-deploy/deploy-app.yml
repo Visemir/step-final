@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: olegk-app  # Ім'я контейнера 
-        image: kalinichenkoit/olegk-app:v2.3 # Образ контейнера 
+        image: kalinichenkoit/olegk-app:v2.3
         ports:
         - containerPort: 5000  # Порт контейнера, на якому працює додаток
         
